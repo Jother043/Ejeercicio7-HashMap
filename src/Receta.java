@@ -7,7 +7,7 @@ public class Receta {
     private HashSet<Ingrediente> ingredientes;
     private LinkedList<String> pasos;
 
-    public Receta(String nombreReceta, int minutosPreparacion) throws RecetaException {
+    public Receta(String nombreReceta, int minutosPreparacion, Ingrediente ingrediente) throws RecetaException {
         this.nombreReceta = nombreReceta.toUpperCase();
         setMinutosDePreparacion(minutosPreparacion);
         ingredientes = new HashSet<Ingrediente>();
@@ -33,6 +33,12 @@ public class Receta {
         pasos.add(paso.toUpperCase());
     }
 
+    /**
+     * Este método es el que se encarga de añadir un ingrediente a la lista de ingredientes.
+     * Utilizamos la condición para ver si la lista contiene el nuevo ingrediente si no lo tiene
+     * se añade y si lo tiene se le suma uno al actual.
+     * @param ingredienteNuevo
+     */
     public void annadirIngrediente(Ingrediente ingredienteNuevo) {
         if (ingredientes.contains(ingredienteNuevo)) {
             for (Ingrediente i : ingredientes) {
@@ -43,6 +49,11 @@ public class Receta {
         }
     }
 
+    /**
+     * Este método te dice si la receta necesita un ingrediente.
+     * @param nombreIngrediente
+     * @return
+     */
     public boolean necesitaIngrediente(String nombreIngrediente) {
         return ingredientes.contains(new Ingrediente(nombreIngrediente));
     }
@@ -106,5 +117,17 @@ public class Receta {
         return true;
     }
 
+    public int compareTo(Receta o2) {
+        return this.getNombreReceta().compareTo(o2.getNombreReceta());
+    }
 
+    @Override
+    public String toString() {
+        return "Receta{" +
+                "nombreReceta='" + nombreReceta + '\'' +
+                ", minutosDePreparacion=" + minutosDePreparacion +
+                ", ingredientes=" + ingredientes +
+                ", pasos=" + pasos +
+                '}';
+    }
 }

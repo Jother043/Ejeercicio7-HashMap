@@ -2,12 +2,9 @@
 public class Ingrediente {
 	private String nombreIngrediente;
 	private int cantidad;
-	
-	public Ingrediente (String ingrediente) {
-		this.nombreIngrediente=nombreIngrediente.toUpperCase();
-	}
 
-	public Ingrediente(String nombreIngrediente, int cantidad) {
+
+	public Ingrediente(String nombreIngrediente) {
 		super();
 		this.nombreIngrediente = nombreIngrediente.toUpperCase();
 		this.cantidad = cantidad;
