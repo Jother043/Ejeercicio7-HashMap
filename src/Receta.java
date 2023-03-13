@@ -49,6 +49,14 @@ public class Receta {
         }
     }
 
+    public void annadirPaso(String pasoExistente) throws RecetaException {
+        if (pasos.contains(pasoExistente)) {
+            throw new RecetaException("No puedes añadir a la receta un paso existente");
+        } else {
+            pasos.add(pasoExistente);
+        }
+    }
+
     /**
      * Este método te dice si la receta necesita un ingrediente.
      * @param nombreIngrediente
@@ -62,16 +70,23 @@ public class Receta {
 
         boolean encontrado = false;
 
-        for (String paso : pasos) {
-            if (pasos.contains(ingredienteABorrar.getNombreIngrediente())) {
-                ingredientes.remove(ingredienteABorrar);
-                pasos.remove(paso);
-                encontrado = true;
-                break;
-            }
+        if(!ingredientes.contains(ingredienteABorrar)){
+            throw new RecetaException("No se ha encontrado el ingrediente.");
         }
+
+        ingredientes.remove(ingredienteABorrar);
+
+        int index = 0;
+        for (String paso : pasos) {
+            if (paso.equals(ingredienteABorrar.getNombreIngrediente())) {
+                pasos.remove(index);
+                encontrado = true;
+            }
+            index++;
+        }
+
         if (!encontrado){
-            throw new RecetaException("No se ha encontrado el ingrediente ni el paso que lo contiene.");
+            throw new RecetaException("No se ha encontrado el paso que contiene al ingrediente.");
         }
     }
 
@@ -81,7 +96,7 @@ public class Receta {
         //Se podria hacer más eficiente con el indexOf.
         for (String paso : pasos) {
             if (pasos.contains(pasoExistente)) {
-                pasos.add(index + 1, paso);
+                pasos.add(index + 1, pasoNuevo);
                 existepaso = true;
                 break;
             }
@@ -123,11 +138,10 @@ public class Receta {
 
     @Override
     public String toString() {
-        return "Receta{" +
-                "nombreReceta='" + nombreReceta + '\'' +
-                ", minutosDePreparacion=" + minutosDePreparacion +
-                ", ingredientes=" + ingredientes +
-                ", pasos=" + pasos +
-                '}';
+        return "Receta: " +
+                " nombreReceta: " + nombreReceta + "," +
+                " minutosDePreparacion: " + minutosDePreparacion + "," +
+                " ingredientes: " + ingredientes + "," +
+                " pasos: " + pasos ;
     }
 }

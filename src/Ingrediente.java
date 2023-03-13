@@ -28,7 +28,7 @@ public class Ingrediente {
 
 	@Override
 	public String toString() {
-		return "Ingrediente [nombreIngrediente=" + nombreIngrediente + ", cantidad=" + cantidad + "]";
+		return " Ingrediente: nombreIngrediente: " + nombreIngrediente + ", cantidad: " + cantidad + " ";
 	}
 
 	@Override
