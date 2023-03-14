@@ -3,11 +3,16 @@ public class Ingrediente {
 	private String nombreIngrediente;
 	private int cantidad;
 
+	public Ingrediente(String nombreIngrediente, int cantidad) {
+		super();
+		this.nombreIngrediente = nombreIngrediente.toUpperCase();
+		this.cantidad = cantidad;
+	}
 
 	public Ingrediente(String nombreIngrediente) {
 		super();
 		this.nombreIngrediente = nombreIngrediente.toUpperCase();
-		this.cantidad = cantidad;
+		this.cantidad = 1;
 	}
 
 	public String getNombreIngrediente() {

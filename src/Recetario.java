@@ -4,10 +4,9 @@ import java.util.*;
 public class Recetario {
 
 	private HashMap<String, Receta> recetas;
-	
+
 	public Recetario() {
 		recetas=new HashMap<String,Receta>();
-	
 	}
 
 	/**
@@ -35,8 +34,10 @@ public class Recetario {
 	 */
 	public String listadoRecetasOrdenadasAlfabeticamente() throws RecetaException {
 
+		if(recetas.isEmpty()){
+            throw new RecetaException("No hay recetas en el recetario");
+        }
 		StringBuilder sb = new StringBuilder();
-		Set<String> claves = recetas.keySet();
 		List<Receta> recetario = new ArrayList<>(recetas.values());
 		recetario.sort(new Comparator<Receta>() {
 			@Override
@@ -54,9 +55,11 @@ public class Recetario {
 
 		return sb.toString();
 	}
-	
-	public String listadoRecetasConIngredienteOrdenadasPorTiempoPreparacion(String ingrediente) throws RecetaException{
 
+	public String listadoRecetasConIngredienteOrdenadasPorTiempoPreparacion(String ingrediente) throws RecetaException{
+        if(recetas.isEmpty()){
+            throw new RecetaException("No hay recetas en el recetario");
+        }
 		StringBuilder sb = new StringBuilder();
 		List<Receta> listadoRecetas = new ArrayList<>();
 		boolean hayIngrediente = false;
@@ -65,7 +68,6 @@ public class Recetario {
 			if(receta.necesitaIngrediente(ingrediente)){
 				listadoRecetas.add(receta);
 				hayIngrediente = true;
-
 			}
 		}
 

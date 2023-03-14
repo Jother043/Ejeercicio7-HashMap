@@ -1,5 +1,7 @@
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class Receta {
     private String nombreReceta;
@@ -7,7 +9,7 @@ public class Receta {
     private HashSet<Ingrediente> ingredientes;
     private LinkedList<String> pasos;
 
-    public Receta(String nombreReceta, int minutosPreparacion, Ingrediente ingrediente) throws RecetaException {
+    public Receta(String nombreReceta, int minutosPreparacion) throws RecetaException {
         this.nombreReceta = nombreReceta.toUpperCase();
         setMinutosDePreparacion(minutosPreparacion);
         ingredientes = new HashSet<Ingrediente>();
@@ -40,13 +42,28 @@ public class Receta {
      * @param ingredienteNuevo
      */
     public void annadirIngrediente(Ingrediente ingredienteNuevo) {
-        if (ingredientes.contains(ingredienteNuevo)) {
-            for (Ingrediente i : ingredientes) {
-                i.setCantidad(i.getCantidad() + ingredienteNuevo.getCantidad());
+        Iterator<Ingrediente> it=ingredientes.iterator();
+        boolean encontrado=false;
+        while(it.hasNext() && !encontrado) {
+            Ingrediente i=it.next();
+            if(i.equals(ingredienteNuevo)) {
+                i.setCantidad(i.getCantidad()+ingredienteNuevo.getCantidad());
+                encontrado=true;
             }
-        } else {
+        }
+
+        if(!encontrado) {
             ingredientes.add(ingredienteNuevo);
         }
+//        if (ingredientes.contains(ingredienteNuevo)) {
+//            for (Ingrediente i : ingredientes) {
+//                if(i.equals(ingredienteNuevo)) {
+//                    i.setCantidad(i.getCantidad() + ingredienteNuevo.getCantidad());
+//                }
+//            }
+//        } else {
+//            ingredientes.add(ingredienteNuevo);
+//        }
     }
 
     public void annadirPaso(String pasoExistente) throws RecetaException {

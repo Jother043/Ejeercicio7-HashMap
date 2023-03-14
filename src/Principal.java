@@ -5,21 +5,28 @@ public class Principal {
         Ingrediente ingrediente1 = new Ingrediente("cebolla");
         Ingrediente ingrediente2 = new Ingrediente("Perejil");
         Ingrediente ingrediente3 = new Ingrediente("Carne");
-        Ingrediente ingrediente4 = new Ingrediente("cebolla");
+        Ingrediente ingrediente4 = new Ingrediente("cebolla", 1);
         Receta receta1 = null;
         Receta receta2 = null;
         Receta receta3 = null;
         Receta receta4 = null;
         try {
-            receta1 = new Receta("Cebollin pilpi", 10, ingrediente1);
-            receta2 = new Receta("Filete al perejil", 5, ingrediente2);
-            receta3 = new Receta("Albóndigas con tomate", 30, ingrediente3);
-            receta4 = new Receta("Compota bi color", 3, ingrediente4);
+            receta1 = new Receta("Cebollin pilpil", 10);
+            receta2 = new Receta("Filete al perejil", 5);
+            receta3 = new Receta("Albóndigas con tomate", 30);
+            receta4 = new Receta("Compota bi color", 3);
 
             receta1.annadirIngrediente(ingrediente1);
             receta2.annadirIngrediente(ingrediente2);
             receta3.annadirIngrediente(ingrediente3);
             receta4.annadirIngrediente(ingrediente4);
+            receta4.annadirIngrediente(ingrediente4);
+            receta4.annadirIngrediente(ingrediente4);
+            receta4.annadirIngrediente(ingrediente4);
+
+
+
+
 
             recetario.annadirReceta(receta1);
             recetario.annadirReceta(receta2);
